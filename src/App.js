@@ -11,7 +11,7 @@
       events: [],
       lat: null,
       lon: null,
-      page: null,
+      page: 32
     }
 
     componentDidMount() {

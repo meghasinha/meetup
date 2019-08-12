@@ -34,6 +34,7 @@ class Event extends Component {
             <p className="visibility">{event.visibility}</p>
             <a className="link" href={event.link}>Event Link</a>
           </div>
+
         }
         <button className="details-btn" onClick={this.onDetailsButtonClicked}>Details</button>
       </div>
