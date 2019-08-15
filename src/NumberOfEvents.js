@@ -20,7 +20,7 @@ class NumberOfEvents extends Component {
       this.setState({ errorText: "" })
     }
   }
-s
+
   render() {
     return (
       <div className="NumberOfEvents">
