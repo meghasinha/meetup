@@ -10,8 +10,8 @@ class NumberOfEvents extends Component {
 
   onNumberChanged = (event) => {
     const value = event.target.value;
-    this.setState({warnigText: ""})
     this.setState({ number: value });
+     if (navigator.online) { localStorage.setItem('lastNumber', JSON.stringify(value)); }
     if(value < 1)
     {
       this.setState({ errorText: " Number should be at least 1." })
@@ -21,7 +21,7 @@ class NumberOfEvents extends Component {
       this.props.updateEvents(null, null, value);
       this.setState({ errorText: "" })
     }
-    if(!navigator.online)
+    if(!navigator.onLine)
     {
       this.setState({ warnigText: "You are offline  and data is loaded from cached"})
     }
@@ -30,6 +30,7 @@ class NumberOfEvents extends Component {
     this.setState({ warnigText: ""})
     }
   }
+
 
   render() {
     return (
