@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { ErrorAlert } from './Alert';
+import { ErrorAlert, WarnigAlert } from './Alert';
 
 class NumberOfEvents extends Component {
   state = {
     number: 32,
-    errorText:''
+    errorText:'',
+    warnigText:''
   };
 
   onNumberChanged = (event) => {
     const value = event.target.value;
+    this.setState({warnigText: ""})
     this.setState({ number: value });
     if(value < 1)
     {
@@ -19,12 +21,21 @@ class NumberOfEvents extends Component {
       this.props.updateEvents(null, null, value);
       this.setState({ errorText: "" })
     }
+    if(!navigator.online)
+    {
+      this.setState({ warnigText: "You are offline  and data is loaded from cached"})
+    }
+    else
+    {
+    this.setState({ warnigText: ""})
+    }
   }
 
   render() {
     return (
       <div className="NumberOfEvents">
       <ErrorAlert text={this.state.errorText} />
+      <WarnigAlert text ={this.state.warnigText}/>
         <span>Show </span>
         <input
           type="number"
