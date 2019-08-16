@@ -7,6 +7,17 @@ class NumberOfEvents extends Component {
     errorText:'',
     warningText:''
   };
+  componentDidMount() {
+    if (!navigator.onLine)
+     {
+      this.setState({ warningText: "You are offline and the  events displayed is from cached" });
+      }
+    else
+      {
+        this.setState({ warningText: "" })
+      }
+
+   }
 
   onNumberChanged = (event) => {
     const value = event.target.value;
@@ -19,14 +30,6 @@ class NumberOfEvents extends Component {
       {
       this.props.updateEvents(null, null, value);
       this.setState({ errorText: "" })
-      }
-    if (!navigator.onLine)
-     {
-      this.setState({ warningText: "You are offline and the  events displayed is from cached" });
-      }
-    else
-      {
-        this.setState({ warningText: "" })
       }
   }
 
