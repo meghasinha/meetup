@@ -5,38 +5,37 @@ class NumberOfEvents extends Component {
   state = {
     number: 32,
     errorText:'',
-    warnigText:''
+    warningText:''
   };
 
   onNumberChanged = (event) => {
     const value = event.target.value;
     this.setState({ number: value });
-     if (navigator.online) { localStorage.setItem('lastNumber', JSON.stringify(value)); }
     if(value < 1)
-    {
+      {
       this.setState({ errorText: " Number should be at least 1." })
-    }
+      }
     else
-    {
+      {
       this.props.updateEvents(null, null, value);
       this.setState({ errorText: "" })
-    }
-    if(!navigator.onLine)
-    {
-      this.setState({ warnigText: "You are offline  and data is loaded from cached"})
-    }
+      }
+    if (!navigator.onLine)
+     {
+      this.setState({ warningText: "You are offline and the  events displayed is from cached" });
+      }
     else
-    {
-    this.setState({ warnigText: ""})
-    }
+      {
+        this.setState({ warningText: "" })
+      }
   }
 
 
   render() {
     return (
       <div className="NumberOfEvents">
-      <ErrorAlert text={this.state.errorText} />
-      <WarnigAlert text ={this.state.warnigText}/>
+      <ErrorAlert text={this.state.errorText}/>
+      <WarnigAlert text={this.state.warningText}/>
         <span>Show </span>
         <input
           type="number"
